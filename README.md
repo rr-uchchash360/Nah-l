@@ -1,6 +1,6 @@
 # Nahl
 
-A new Flutter project.
+A money management and budget tracker android mobile application project.
 
 ## Getting Started
 
