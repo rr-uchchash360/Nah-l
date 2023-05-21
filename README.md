@@ -1,6 +1,6 @@
 # Nahl
 
-A money management and budget tracker android mobile application project.
+A money management and budget tracking android mobile application project.
 
 ## Getting Started
 
