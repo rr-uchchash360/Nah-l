@@ -32,5 +32,5 @@ samples, guidance on mobile development, and a full API reference.
 
 # Contributors:
 - [Md. Rafiur Rahman](https://github.com/rr-uchchash360)
-- [Zubayer Tahmid](https://github.com/rr-uchchash360)
-- [Abrar Mahabub Nowrid](https://github.com/rr-uchchash360)
+- [Zubayer Tahmid](https://github.com/zubayertahmid)
+- [Abrar Mahabub Nowrid](https://github.com/AbrarMahabub21)
