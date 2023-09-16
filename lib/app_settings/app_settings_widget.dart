@@ -1,8 +1,7 @@
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -60,12 +59,11 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
         ),
         title: Text(
           FFLocalizations.of(context).getText(
-            'shdp1dzt' /* App Settings */,
+            'tlpt0i6k' /* App Settings */,
           ),
-          textAlign: TextAlign.center,
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
+                color: FlutterFlowTheme.of(context).primaryBtnText,
                 fontSize: 22.0,
               ),
         ),
@@ -76,146 +74,105 @@ class _AppSettingsWidgetState extends State<AppSettingsWidget> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 0.0, 0.0),
-                child: Text(
-                  FFLocalizations.of(context).getText(
-                    '3jmzqn1t' /* Theme */,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 0.0, 0.0),
-                  child: FlutterFlowDropDown<String>(
-                    controller: _model.dropDownValueController1 ??=
-                        FormFieldController<String>(null),
-                    options: [
-                      FFLocalizations.of(context).getText(
-                        'l35aokbe' /* Dark */,
-                      ),
-                      FFLocalizations.of(context).getText(
-                        '2u5j04rb' /* Light */,
-                      ),
-                      FFLocalizations.of(context).getText(
-                        'e10swkb7' /* Device Theme */,
-                      )
-                    ],
-                    onChanged: (val) =>
-                        setState(() => _model.dropDownValue1 = val),
-                    width: 180.0,
-                    height: 50.0,
-                    searchHintTextStyle:
-                        FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: '',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                    textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                    hintText: FFLocalizations.of(context).getText(
-                      'niz87tb6' /* Device Theme */,
-                    ),
-                    searchHintText: FFLocalizations.of(context).getText(
-                      'kg0b0xt7' /* Search for an item... */,
-                    ),
-                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 2.0,
-                    borderColor: Colors.transparent,
-                    borderWidth: 0.0,
-                    borderRadius: 0.0,
-                    margin:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 12.0, 4.0),
-                    hidesUnderline: true,
-                    isSearchable: false,
-                  ),
-                ),
-              ),
-            ],
-          ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          'grbo703p' /* Currency */,
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium,
-                      ),
-                    ),
-                  ],
-                ),
                 Expanded(
-                  child: FlutterFlowDropDown<String>(
-                    controller: _model.dropDownValueController2 ??=
-                        FormFieldController<String>(null),
-                    options: [
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: Text(
                       FFLocalizations.of(context).getText(
-                        '51m3clv0' /* Bangladeshi Taka - BDT (৳) */,
+                        'zc7su4nv' /* Choose what notifications you ... */,
                       ),
-                      FFLocalizations.of(context).getText(
-                        'h93v49t7' /* United States Dollar - USD ($) */,
-                      )
-                    ],
-                    onChanged: (val) =>
-                        setState(() => _model.dropDownValue2 = val),
-                    width: 180.0,
-                    height: 50.0,
-                    searchHintTextStyle:
-                        FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: '',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                    textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                    hintText: FFLocalizations.of(context).getText(
-                      'lar6zuby' /* Bangladeshi Taka - BDT (৳) */,
+                      style: FlutterFlowTheme.of(context).bodySmall,
                     ),
-                    searchHintText: FFLocalizations.of(context).getText(
-                      '5vwpbpfk' /* Search for an item... */,
-                    ),
-                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 2.0,
-                    borderColor: Colors.transparent,
-                    borderWidth: 0.0,
-                    borderRadius: 0.0,
-                    margin:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 12.0, 4.0),
-                    hidesUnderline: true,
-                    isSearchable: false,
                   ),
                 ),
               ],
             ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+            child: SwitchListTile.adaptive(
+              value: _model.switchListTileValue1 ??= true,
+              onChanged: (newValue) async {
+                setState(() => _model.switchListTileValue1 = newValue!);
+              },
+              title: Text(
+                FFLocalizations.of(context).getText(
+                  'ar4m5768' /* Push Notifications */,
+                ),
+                style: FlutterFlowTheme.of(context).headlineSmall,
+              ),
+              subtitle: Text(
+                FFLocalizations.of(context).getText(
+                  'khetakgt' /* Receive Push notifications fro... */,
+                ),
+                style: FlutterFlowTheme.of(context).bodySmall,
+              ),
+              activeColor: FlutterFlowTheme.of(context).success,
+              activeTrackColor: FlutterFlowTheme.of(context).primaryBtnText,
+              dense: false,
+              controlAffinity: ListTileControlAffinity.trailing,
+              contentPadding:
+                  EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+            ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
+          SwitchListTile.adaptive(
+            value: _model.switchListTileValue2 ??= true,
+            onChanged: (newValue) async {
+              setState(() => _model.switchListTileValue2 = newValue!);
+            },
+            title: Text(
+              FFLocalizations.of(context).getText(
+                'ekzukcte' /* Email Notifications */,
+              ),
+              style: FlutterFlowTheme.of(context).headlineSmall,
+            ),
+            subtitle: Text(
+              FFLocalizations.of(context).getText(
+                'hcc7xxou' /* Receive email notifications fr... */,
+              ),
+              style: FlutterFlowTheme.of(context).bodySmall,
+            ),
+            activeColor: FlutterFlowTheme.of(context).success,
+            activeTrackColor: FlutterFlowTheme.of(context).primaryBtnText,
+            dense: false,
+            controlAffinity: ListTileControlAffinity.trailing,
+            contentPadding:
+                EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+            child: FFButtonWidget(
+              onPressed: () async {
+                context.safePop();
+              },
+              text: FFLocalizations.of(context).getText(
+                '7nceyf2b' /* Save Changes */,
+              ),
+              options: FFButtonOptions(
+                width: 190.0,
+                height: 50.0,
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).success,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Lexend Deca',
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                elevation: 3.0,
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+              ),
+            ),
           ),
         ],
       ),

@@ -22,7 +22,6 @@ class _CategoryInputWidgetState extends State<CategoryInputWidget> {
   late CategoryInputModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -36,7 +35,6 @@ class _CategoryInputWidgetState extends State<CategoryInputWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -45,7 +43,7 @@ class _CategoryInputWidgetState extends State<CategoryInputWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -81,11 +79,12 @@ class _CategoryInputWidgetState extends State<CategoryInputWidget> {
           elevation: 2.0,
         ),
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.00, 0.00),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -140,13 +139,11 @@ class _CategoryInputWidgetState extends State<CategoryInputWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          final categoriesCreateData =
-                              createCategoriesRecordData(
-                            name: _model.textController.text,
-                          );
                           await CategoriesRecord.collection
                               .doc()
-                              .set(categoriesCreateData);
+                              .set(createCategoriesRecordData(
+                                name: _model.textController.text,
+                              ));
                           FFAppState().update(() {
                             FFAppState()
                                 .addToCategories(_model.textController.text);

@@ -2,6 +2,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +13,10 @@ export 'transaction_details_model.dart';
 class TransactionDetailsWidget extends StatefulWidget {
   const TransactionDetailsWidget({
     Key? key,
-    this.dateTime,
+    this.references,
   }) : super(key: key);
 
-  final DateTime? dateTime;
+  final DocumentReference? references;
 
   @override
   _TransactionDetailsWidgetState createState() =>
@@ -25,7 +27,6 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
   late TransactionDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -37,7 +38,6 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -46,7 +46,7 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -81,12 +81,8 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
           centerTitle: true,
           elevation: 2.0,
         ),
-        body: StreamBuilder<List<TransactionsRecord>>(
-          stream: queryTransactionsRecord(
-            queryBuilder: (transactionsRecord) => transactionsRecord
-                .where('created_at', isEqualTo: widget.dateTime),
-            singleRecord: true,
-          ),
+        body: StreamBuilder<TransactionsRecord>(
+          stream: TransactionsRecord.getDocument(widget.references!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -95,21 +91,14 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
                   width: 50.0,
                   height: 50.0,
                   child: CircularProgressIndicator(
-                    color: FlutterFlowTheme.of(context).success,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      FlutterFlowTheme.of(context).success,
+                    ),
                   ),
                 ),
               );
             }
-            List<TransactionsRecord> columnTransactionsRecordList =
-                snapshot.data!;
-            // Return an empty Container when the item does not exist.
-            if (snapshot.data!.isEmpty) {
-              return Container();
-            }
-            final columnTransactionsRecord =
-                columnTransactionsRecordList.isNotEmpty
-                    ? columnTransactionsRecordList.first
-                    : null;
+            final columnTransactionsRecord = snapshot.data!;
             return Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -124,32 +113,39 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
+                                  20.0, 0.0, 20.0, 0.0),
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 0.9,
+                                width: MediaQuery.sizeOf(context).width * 0.9,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.125,
+                                    MediaQuery.sizeOf(context).height * 0.125,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).success,
+                                  color: Color(0xFF9DD5B9),
                                   borderRadius: BorderRadius.circular(25.0),
                                   shape: BoxShape.rectangle,
                                 ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      columnTransactionsRecord!.amount!
-                                          .toString(),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 40.0,
-                                          ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.00, 0.00),
+                                      child: Text(
+                                        formatNumber(
+                                          columnTransactionsRecord.amount,
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
+                                          currency: '৳',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 40.0,
+                                            ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -157,12 +153,12 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
                         ],
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.00, 0.00),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: Text(
-                            columnTransactionsRecord!.type!,
+                            columnTransactionsRecord.type,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -173,14 +169,30 @@ class _TransactionDetailsWidgetState extends State<TransactionDetailsWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.00, 0.00),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 20.0, 0.0, 0.0),
+                              0.0, 20.0, 0.0, 0.0),
+                          child: Text(
+                            columnTransactionsRecord.budget,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 25.0,
+                                ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: AlignmentDirectional(0.00, 0.00),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 0.0),
                           child: Text(
                             dateTimeFormat(
-                              'MMMMEEEEd',
-                              columnTransactionsRecord!.createdAt!,
+                              'yMMMd',
+                              columnTransactionsRecord.createdAt!,
                               locale: FFLocalizations.of(context).languageCode,
                             ),
                             style: FlutterFlowTheme.of(context)

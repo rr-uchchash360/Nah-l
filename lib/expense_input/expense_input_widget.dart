@@ -25,7 +25,6 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
   late ExpenseInputModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -40,7 +39,6 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -49,7 +47,7 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -85,11 +83,12 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
           elevation: 2.0,
         ),
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.00, 0.00),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,7 +106,9 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
                                 width: 50.0,
                                 height: 50.0,
                                 child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).success,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).success,
+                                  ),
                                 ),
                               ),
                             );
@@ -115,15 +116,13 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
                           List<CategoriesRecord> dropDownCategoriesRecordList =
                               snapshot.data!;
                           return FlutterFlowDropDown<String>(
-                            controller: _model.dropDownValueController ??=
+                            controller: _model.dropDownValueController1 ??=
                                 FormFieldController<String>(null),
                             options: dropDownCategoriesRecordList
                                 .map((e) => e.name)
-                                .withoutNulls
-                                .toList()
                                 .toList(),
                             onChanged: (val) =>
-                                setState(() => _model.dropDownValue = val),
+                                setState(() => _model.dropDownValue1 = val),
                             width: 250.0,
                             height: 50.0,
                             searchHintTextStyle:
@@ -153,6 +152,71 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
                                 12.0, 4.0, 12.0, 4.0),
                             hidesUnderline: true,
                             isSearchable: true,
+                            isMultiSelect: false,
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      child: StreamBuilder<List<BudgetsRecord>>(
+                        stream: queryBudgetsRecord(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).success,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<BudgetsRecord> dropDownBudgetsRecordList =
+                              snapshot.data!;
+                          return FlutterFlowDropDown<String>(
+                            controller: _model.dropDownValueController2 ??=
+                                FormFieldController<String>(null),
+                            options: dropDownBudgetsRecordList
+                                .map((e) => e.name)
+                                .toList(),
+                            onChanged: (val) =>
+                                setState(() => _model.dropDownValue2 = val),
+                            width: 250.0,
+                            height: 50.0,
+                            searchHintTextStyle:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                    ),
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Roboto',
+                                ),
+                            hintText: FFLocalizations.of(context).getText(
+                              '3acjlwyz' /* Budget */,
+                            ),
+                            searchHintText: FFLocalizations.of(context).getText(
+                              'a4kc6rd9' /* Search for an item... */,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: Colors.transparent,
+                            borderWidth: 0.0,
+                            borderRadius: 10.0,
+                            margin: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 4.0, 12.0, 4.0),
+                            hidesUnderline: true,
+                            isSearchable: true,
+                            isMultiSelect: false,
                           );
                         },
                       ),
@@ -263,37 +327,6 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed('AddTransactionImage');
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          '1lqyriys' /* Add Image */,
-                        ),
-                        options: FFButtonOptions(
-                          width: 250.0,
-                          height: 50.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).success,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
                           EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                       child: FlutterFlowCalendar(
                         color: FlutterFlowTheme.of(context).success,
@@ -312,74 +345,69 @@ class _ExpenseInputWidgetState extends State<ExpenseInputWidget> {
                         locale: FFLocalizations.of(context).languageCode,
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          final transactionsCreateData =
-                              createTransactionsRecordData(
-                            amount:
-                                double.tryParse(_model.textController1.text),
-                            createdAt: _model.calendarSelectedDay?.start,
-                            type: 'Expense',
-                            category: _model.dropDownValue,
-                          );
-                          await TransactionsRecord.collection
-                              .doc()
-                              .set(transactionsCreateData);
-                          FFAppState().update(() {
-                            FFAppState().addToExpense(
-                                double.parse(_model.textController1.text));
-                          });
-                          var confirmDialogResponse = await showDialog<bool>(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Transaction Alert'),
-                                    content: Text(
-                                        'Do you want to add this transaction?'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(
-                                            alertDialogContext, false),
-                                        child: Text('Cancel'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(
-                                            alertDialogContext, true),
-                                        child: Text('Confirm'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ) ??
-                              false;
+                    FFButtonWidget(
+                      onPressed: () async {
+                        await TransactionsRecord.collection
+                            .doc()
+                            .set(createTransactionsRecordData(
+                              amount:
+                                  double.tryParse(_model.textController1.text),
+                              createdAt: _model.calendarSelectedDay?.start,
+                              type: 'Expense',
+                              category: _model.dropDownValue1,
+                              budget: _model.dropDownValue2,
+                            ));
+                        FFAppState().update(() {
+                          FFAppState().addToExpense(
+                              double.parse(_model.textController1.text));
+                        });
+                        var confirmDialogResponse = await showDialog<bool>(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Transaction Alert'),
+                                  content: Text(
+                                      'Do you want to add this transaction?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: Text('Confirm'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ) ??
+                            false;
 
-                          context.pushNamed('Dashboard');
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          '27x5vr2h' /* Add */,
+                        context.pushNamed('Dashboard');
+                      },
+                      text: FFLocalizations.of(context).getText(
+                        '27x5vr2h' /* Add */,
+                      ),
+                      options: FFButtonOptions(
+                        width: 200.0,
+                        height: 50.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).success,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
                         ),
-                        options: FFButtonOptions(
-                          width: 200.0,
-                          height: 50.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).success,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ],

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
@@ -18,11 +19,13 @@ import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
   await initFirebase();
 
   await FlutterFlowTheme.initialize();
 
   final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -53,13 +56,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _appStateNotifier = AppStateNotifier();
+
+    _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
     userStream = nahlFirebaseUserStream()
       ..listen((user) => _appStateNotifier.update(user));
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      Duration(seconds: 1),
+      Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -97,11 +101,16 @@ class _MyAppState extends State<MyApp> {
         Locale('ar'),
         Locale('fr'),
       ],
-      theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        scrollbarTheme: ScrollbarThemeData(),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scrollbarTheme: ScrollbarThemeData(),
+      ),
       themeMode: _themeMode,
-      routeInformationParser: _router.routeInformationParser,
-      routerDelegate: _router.routerDelegate,
+      routerConfig: _router,
     );
   }
 }
@@ -133,12 +142,21 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Dashboard': DashboardWidget(),
       'AddTransactionType': AddTransactionTypeWidget(),
+      'BudgetLists': BudgetListsWidget(),
       'Graph': GraphWidget(),
       'Menu': MenuWidget(),
+      'GraphCopy': GraphCopyWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+
+    final MediaQueryData queryData = MediaQuery.of(context);
+
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
+      body: MediaQuery(
+          data: queryData
+              .removeViewInsets(removeBottom: true)
+              .removeViewPadding(removeBottom: true),
+          child: _currentPage ?? tabs[_currentPageName]!),
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
         currentIndex: currentIndex,
@@ -215,16 +233,16 @@ class _NavBarPageState extends State<NavBarPage> {
               children: [
                 Icon(
                   currentIndex == 2
-                      ? Icons.insert_chart
-                      : Icons.bar_chart_rounded,
+                      ? Icons.calculate
+                      : Icons.calculate_outlined,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primaryBtnText
                       : FlutterFlowTheme.of(context).gray200,
-                  size: 30.0,
+                  size: 34.0,
                 ),
                 Text(
                   FFLocalizations.of(context).getText(
-                    'hnwhw8to' /* Statistics */,
+                    'o82l44j9' /* Budget */,
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -242,19 +260,75 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  currentIndex == 3 ? Icons.menu_open_outlined : Icons.menu,
+                  currentIndex == 3
+                      ? Icons.insert_chart
+                      : Icons.insert_chart_outlined_rounded,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).primaryBtnText
                       : FlutterFlowTheme.of(context).gray200,
-                  size: 30.0,
+                  size: 34.0,
                 ),
                 Text(
                   FFLocalizations.of(context).getText(
-                    '42mczdyj' /* Menu */,
+                    'u1ocdmch' /* Graph */,
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3
+                        ? FlutterFlowTheme.of(context).primaryBtnText
+                        : FlutterFlowTheme.of(context).gray200,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 4 ? Icons.menu_open : Icons.menu_rounded,
+                  color: currentIndex == 4
+                      ? FlutterFlowTheme.of(context).primaryBtnText
+                      : FlutterFlowTheme.of(context).gray200,
+                  size: 34.0,
+                ),
+                Text(
+                  FFLocalizations.of(context).getText(
+                    '0hdjntt2' /* Menu */,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 4
+                        ? FlutterFlowTheme.of(context).primaryBtnText
+                        : FlutterFlowTheme.of(context).gray200,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 5
+                      ? Icons.insert_chart
+                      : Icons.insert_chart_outlined_rounded,
+                  color: currentIndex == 5
+                      ? FlutterFlowTheme.of(context).primaryBtnText
+                      : FlutterFlowTheme.of(context).gray200,
+                  size: 34.0,
+                ),
+                Text(
+                  FFLocalizations.of(context).getText(
+                    '4iqpz7zs' /* Graph */,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 5
                         ? FlutterFlowTheme.of(context).primaryBtnText
                         : FlutterFlowTheme.of(context).gray200,
                     fontSize: 11.0,

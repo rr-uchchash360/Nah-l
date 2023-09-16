@@ -19,7 +19,6 @@ class _AddTransactionTypeWidgetState extends State<AddTransactionTypeWidget> {
   late AddTransactionTypeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -31,7 +30,6 @@ class _AddTransactionTypeWidgetState extends State<AddTransactionTypeWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -40,7 +38,7 @@ class _AddTransactionTypeWidgetState extends State<AddTransactionTypeWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -63,6 +61,7 @@ class _AddTransactionTypeWidgetState extends State<AddTransactionTypeWidget> {
           elevation: 2.0,
         ),
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -70,7 +69,7 @@ class _AddTransactionTypeWidgetState extends State<AddTransactionTypeWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.00, 0.00),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 10.0),
@@ -172,10 +171,10 @@ class _AddTransactionTypeWidgetState extends State<AddTransactionTypeWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        context.pushNamed('ExpenseInput');
+                        context.pushNamed('BudgetInput');
                       },
                       text: FFLocalizations.of(context).getText(
-                        'avf8btm7' /* Savings */,
+                        'avf8btm7' /* Budget */,
                       ),
                       options: FFButtonOptions(
                         width: 200.0,

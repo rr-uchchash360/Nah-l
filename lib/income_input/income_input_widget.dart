@@ -25,7 +25,6 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
   late IncomeInputModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -40,7 +39,6 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -49,7 +47,7 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -85,11 +83,12 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
           elevation: 2.0,
         ),
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.00, 0.00),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,7 +106,9 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
                                 width: 50.0,
                                 height: 50.0,
                                 child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).success,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).success,
+                                  ),
                                 ),
                               ),
                             );
@@ -115,15 +116,13 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
                           List<CategoriesRecord> dropDownCategoriesRecordList =
                               snapshot.data!;
                           return FlutterFlowDropDown<String>(
-                            controller: _model.dropDownValueController ??=
+                            controller: _model.dropDownValueController1 ??=
                                 FormFieldController<String>(null),
                             options: dropDownCategoriesRecordList
                                 .map((e) => e.name)
-                                .withoutNulls
-                                .toList()
                                 .toList(),
                             onChanged: (val) =>
-                                setState(() => _model.dropDownValue = val),
+                                setState(() => _model.dropDownValue1 = val),
                             width: 250.0,
                             height: 50.0,
                             searchHintTextStyle:
@@ -153,6 +152,71 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
                                 12.0, 4.0, 12.0, 4.0),
                             hidesUnderline: true,
                             isSearchable: true,
+                            isMultiSelect: false,
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      child: FutureBuilder<List<BudgetsRecord>>(
+                        future: queryBudgetsRecordOnce(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).success,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<BudgetsRecord> dropDownBudgetsRecordList =
+                              snapshot.data!;
+                          return FlutterFlowDropDown<String>(
+                            controller: _model.dropDownValueController2 ??=
+                                FormFieldController<String>(null),
+                            options: dropDownBudgetsRecordList
+                                .map((e) => e.name)
+                                .toList(),
+                            onChanged: (val) =>
+                                setState(() => _model.dropDownValue2 = val),
+                            width: 250.0,
+                            height: 50.0,
+                            searchHintTextStyle:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                    ),
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Roboto',
+                                ),
+                            hintText: FFLocalizations.of(context).getText(
+                              'd69rwc1j' /* Budget */,
+                            ),
+                            searchHintText: FFLocalizations.of(context).getText(
+                              'xo5sr12w' /* Search for an item... */,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: Colors.transparent,
+                            borderWidth: 0.0,
+                            borderRadius: 10.0,
+                            margin: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 4.0, 12.0, 4.0),
+                            hidesUnderline: true,
+                            isSearchable: true,
+                            isMultiSelect: false,
                           );
                         },
                       ),
@@ -280,17 +344,16 @@ class _IncomeInputWidgetState extends State<IncomeInputWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          final transactionsCreateData =
-                              createTransactionsRecordData(
-                            amount:
-                                double.tryParse(_model.textController1.text),
-                            createdAt: _model.calendarSelectedDay?.start,
-                            type: 'Income',
-                            category: _model.dropDownValue,
-                          );
                           await TransactionsRecord.collection
                               .doc()
-                              .set(transactionsCreateData);
+                              .set(createTransactionsRecordData(
+                                amount: double.tryParse(
+                                    _model.textController1.text),
+                                createdAt: _model.calendarSelectedDay?.start,
+                                type: 'Income',
+                                category: _model.dropDownValue1,
+                                budget: _model.dropDownValue2,
+                              ));
                           FFAppState().update(() {
                             FFAppState().addToIncome(
                                 double.parse(_model.textController1.text));

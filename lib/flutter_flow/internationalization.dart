@@ -109,17 +109,47 @@ Locale createLocale(String language) => language.contains('_')
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Login
   {
-    'll87do52': {
-      'en': 'Email',
+    'zvie5mj9': {
+      'en': 'Welcome Back!',
       'ar': '',
-      'bn': 'ইমেইল',
+      'bn': '',
       'fr': '',
     },
-    'amy9qn3w': {
+    '4lk51puo': {
+      'en': 'Login to access your account below.',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '475cg9h0': {
+      'en': 'Email',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'ripyeok1': {
+      'en': 'Enter your registered email',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '28e84miz': {
       'en': 'Password',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'lyf1sslk': {
+      'en': 'Enter your password',
       'ar': 'كلمة المرور',
       'bn': 'পাসওয়ার্ড',
       'fr': 'Mot de passe',
+    },
+    'jc3vxzm5': {
+      'en': 'Forget Password?',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
     'qrby8rf0': {
       'en': 'Log In',
@@ -127,23 +157,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'bn': 'প্রবেশ করুন',
       'fr': 'Connexion',
     },
-    'tdj041cp': {
+    '5uzjtold': {
       'en': 'Don\'t have an account?',
-      'ar': 'ليس لديك حساب؟',
-      'bn': 'একটি অ্যাকাউন্ট নেই?',
-      'fr': 'Vous n\'avez pas de compte ?',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
-    'hgo4qe1u': {
-      'en': 'Sign Up',
-      'ar': 'اشتراك',
-      'bn': 'নিবন্ধন করুন',
-      'fr': 'S\'inscrire',
-    },
-    '4sl8v9yy': {
-      'en': 'Login',
-      'ar': 'تسجيل الدخول',
-      'bn': 'প্রবেশ করুন',
-      'fr': 'Connexion',
+    'f9799biy': {
+      'en': 'Create',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
     'fcqgdnom': {
       'en': 'Home',
@@ -171,6 +195,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'التحويلات الاخيرة',
       'bn': 'সাম্প্রতিক লেনদেন',
       'fr': 'transactions récentes',
+    },
+    '71ds1nwd': {
+      'en': 'Search your recent transactions here...',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
     'k5it61da': {
       'en': 'Delete',
@@ -229,74 +259,89 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // SignUp
   {
-    '8w9oup7o': {
+    'vlbqewfk': {
+      'en': 'Get Started',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '4nz8uj1f': {
+      'en': 'Create your account below.',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'j6yspkt8': {
       'en': 'Full Name',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '8w9oup7o': {
+      'en': 'Enter your full name',
       'ar': 'الاسم الكامل',
       'bn': 'পুরো নাম',
       'fr': 'Nom et prénom',
     },
-    'zytojq89': {
+    '13jinqv9': {
       'en': 'Email',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'zytojq89': {
+      'en': 'Enter a valid email',
       'ar': 'بريد إلكتروني',
       'bn': 'ইমেইল',
       'fr': 'E-mail',
     },
-    's1y7k5vd': {
+    '0glmtxhh': {
       'en': 'Password',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    's1y7k5vd': {
+      'en': 'Choose a strong password!',
       'ar': 'كلمة المرور',
       'bn': 'পাসওয়ার্ড',
       'fr': 'Mot de passe',
     },
+    '0vuldn5o': {
+      'en': 'Re-enter Password',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
     'uqsqotky': {
-      'en': 'Confirm Password',
+      'en': 'Please re-enter password ',
       'ar': 'تأكيد كلمة المرور',
       'bn': 'পাসওয়ার্ড নিশ্চিত করুন',
       'fr': 'Confirmez le mot de passe',
     },
     'kgv2diry': {
-      'en': 'Sign Up',
+      'en': 'Create Account',
       'ar': 'اشتراك',
       'bn': 'নিবন্ধন করুন',
       'fr': 'S\'inscrire',
     },
-    'lh9u4ncy': {
-      'en': 'Already  have an account?',
-      'ar': 'هل لديك حساب؟',
-      'bn': 'ইতিমধ্যে একটি সদস্যপদ আছে?',
-      'fr': 'Vous avez déjà un compte?',
-    },
-    'xihdx5z1': {
+    'em5ydhq3': {
       'en': 'Login',
-      'ar': 'تسجيل الدخول',
-      'bn': 'প্রবেশ করুন',
-      'fr': 'Connexion',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
-    '3v02emcd': {
-      'en': 'Sign Up',
-      'ar': 'اشتراك',
-      'bn': 'নিবন্ধন করুন',
-      'fr': 'S\'inscrire',
+    '8j5w1kn3': {
+      'en': 'Already have an account?',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
     'dlsxjhjh': {
       'en': 'Home',
       'ar': '',
       'bn': 'হোম',
       'fr': '',
-    },
-  },
-  // Graph
-  {
-    '4iow2533': {
-      'en': 'Graph',
-      'ar': 'رسم بياني',
-      'bn': 'চিত্রলেখ',
-      'fr': 'Graphique',
-    },
-    'hnwhw8to': {
-      'en': 'Statistics',
-      'ar': 'إحصائيات',
-      'bn': 'পরিসংখ্যান',
-      'fr': 'Statistiques',
     },
   },
   // AddTransactionType
@@ -320,7 +365,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Catégorie',
     },
     'avf8btm7': {
-      'en': 'Savings',
+      'en': 'Budget',
       'ar': 'مدخرات',
       'bn': 'সঞ্চয়',
       'fr': 'Des économies',
@@ -353,6 +398,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Catégorie',
     },
     'b2nu327i': {
+      'en': 'Search for an item...',
+      'ar': 'البحث عن عنصر ...',
+      'bn': 'একটি আইটেম খুঁজুন...',
+      'fr': 'Rechercher un article...',
+    },
+    'be2g6xhs': {
+      'en': 'Option 1',
+      'ar': 'الخيار 1',
+      'bn': 'বিকল্প 1',
+      'fr': 'Option 1',
+    },
+    'd69rwc1j': {
+      'en': 'Budget',
+      'ar': 'فئة',
+      'bn': 'শ্রেণী',
+      'fr': 'Catégorie',
+    },
+    'xo5sr12w': {
       'en': 'Search for an item...',
       'ar': 'البحث عن عنصر ...',
       'bn': 'একটি আইটেম খুঁজুন...',
@@ -409,6 +472,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'bn': 'একটি আইটেম খুঁজুন...',
       'fr': 'Rechercher un article...',
     },
+    '0yyjx1x5': {
+      'en': 'Option 1',
+      'ar': 'الخيار 1',
+      'bn': 'বিকল্প 1',
+      'fr': 'Option 1',
+    },
+    '3acjlwyz': {
+      'en': 'Budget',
+      'ar': 'فئة',
+      'bn': 'শ্রেণী',
+      'fr': 'Catégorie',
+    },
+    'a4kc6rd9': {
+      'en': 'Search for an item...',
+      'ar': 'البحث عن عنصر ...',
+      'bn': 'একটি আইটেম খুঁজুন...',
+      'fr': 'Rechercher un article...',
+    },
     '2opp6oaw': {
       'en': 'Amount',
       'ar': 'كمية',
@@ -420,12 +501,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'ملحوظة',
       'bn': 'বিঃদ্রঃ',
       'fr': 'Note',
-    },
-    '1lqyriys': {
-      'en': 'Add Image',
-      'ar': 'إضافة صورة',
-      'bn': 'ছবি যোগ কর',
-      'fr': 'Ajouter une image',
     },
     '27x5vr2h': {
       'en': 'Add',
@@ -473,7 +548,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Maison',
     },
   },
-  // AppSettings
+  // AppSettingsOLD
   {
     'shdp1dzt': {
       'en': 'App Settings',
@@ -596,72 +671,45 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Statistiques',
     },
   },
-  // Menu
-  {
-    'vloj7uyl': {
-      'en': 'Menu',
-      'ar': 'قائمة طعام',
-      'bn': 'তালিকা',
-      'fr': 'Menu',
-    },
-    '7c1bnopp': {
-      'en': 'Edit Profile',
-      'ar': '',
-      'bn': '',
-      'fr': '',
-    },
-    'tb6yhf1x': {
-      'en': 'Zakat Section',
-      'ar': '',
-      'bn': '',
-      'fr': '',
-    },
-    'wfjq3fyh': {
-      'en': 'About Us',
-      'ar': '',
-      'bn': '',
-      'fr': '',
-    },
-    '295h3yrp': {
-      'en': 'Logout',
-      'ar': '',
-      'bn': '',
-      'fr': '',
-    },
-    '42mczdyj': {
-      'en': 'Menu',
-      'ar': 'قائمة طعام',
-      'bn': 'তালিকা',
-      'fr': 'Menu',
-    },
-  },
   // EditProfile
   {
-    '96eks5bg': {
-      'en': 'Change Photo',
-      'ar': 'غير الصوره',
-      'bn': 'ছবি পরিবর্তন',
-      'fr': 'Changer la photo',
+    '84gby97a': {
+      'en': 'Name',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
-    'pvrjsb9d': {
-      'en': 'Your Name',
-      'ar': 'اسمك',
-      'bn': 'তোমার নাম',
-      'fr': 'votre nom',
+    '9to5323f': {
+      'en': 'Name',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
-    'xtfepha5': {
-      'en': 'Email Address',
-      'ar': 'عنوان البريد الإلكتروني',
-      'bn': 'ইমেইল ঠিকানা',
-      'fr': 'Adresse e-mail',
+    'j0kps126': {
+      'en': 'Email',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
-    'pga5x5gs': {
+    'rhjsmdli': {
+      'en': 'Email',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'no4619md': {
       'en': 'Save Changes',
-      'ar': 'حفظ التغييرات',
-      'bn': 'পরিবর্তনগুলোর সংরক্ষন',
-      'fr': 'Sauvegarder les modifications',
+      'ar': '',
+      'bn': '',
+      'fr': '',
     },
-    'tzgf8h6m': {
+    'ndcpd8wm': {
+      'en': 'Reset Password',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'ir3i6g8f': {
       'en': 'Edit Profile',
       'ar': 'تعديل الملف الشخصي',
       'bn': 'জীবন বৃত্তান্ত সম্পাদনা',
@@ -670,14 +718,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // ZakatCalculator
   {
-    '9ucma7xc': {
+    'xlycbnwx': {
       'en': 'Cash Amount',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'r4n6n7wh': {
+      'en': 'Hand Cash',
       'ar': '',
       'bn': '',
       'fr': '',
     },
     'l4qv1adz': {
       'en': 'Cash on Hand',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'z7ouyqbh': {
+      'en': 'Bank Cash',
       'ar': '',
       'bn': '',
       'fr': '',
@@ -694,14 +754,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'bn': '',
       'fr': '',
     },
+    'eubynrab': {
+      'en': 'Gold Amount',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
     'd3tum4xy': {
-      'en': 'Equivalent amount of Gold',
+      'en': 'Amount of Gold in gram',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '6vtiw9gf': {
+      'en': 'Silver Amount',
       'ar': '',
       'bn': '',
       'fr': '',
     },
     '31wsr32k': {
-      'en': 'Equivalent amount of Silver',
+      'en': 'Amount of Silver in gram',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'hia640fy': {
+      'en':
+          'You would need to be online in order to calculate the current prices for gold and silver. \nYou won\'t obtain a current price unless.',
       'ar': '',
       'bn': '',
       'fr': '',
@@ -719,7 +798,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': '',
     },
     's4kjvuy1': {
-      'en': 'Home',
+      'en': 'Zakat',
       'ar': '',
       'bn': '',
       'fr': '',
@@ -729,6 +808,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'bq4yc4se': {
       'en': 'Calculate Zakat',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'z7g4l8fh': {
+      'en': 'Donate Zakat',
       'ar': '',
       'bn': '',
       'fr': '',
@@ -852,6 +937,448 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8wy5k1g0': {
       'en': 'Home',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+  },
+  // BudgetInput
+  {
+    'vjhfy8eq': {
+      'en': 'Amount',
+      'ar': 'كمية',
+      'bn': 'পরিমাণ',
+      'fr': 'Montant',
+    },
+    'ejgnz51f': {
+      'en': 'Budget Name',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'fra439b6': {
+      'en': 'Budget Name',
+      'ar': 'كمية',
+      'bn': 'পরিমাণ',
+      'fr': 'Montant',
+    },
+    'iy2mo1wo': {
+      'en': 'Description',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '352410qe': {
+      'en': 'You can write your budget details here.',
+      'ar': 'وصف',
+      'bn': 'বর্ণনা',
+      'fr': 'Description',
+    },
+    'hg6kznnb': {
+      'en': 'Budget Input',
+      'ar': 'مدخلات الدخل',
+      'bn': 'আয় ইনপুট',
+      'fr': 'Entrée de revenu',
+    },
+    'w46wnyov': {
+      'en': 'Home',
+      'ar': 'بيت',
+      'bn': 'বাড়ি',
+      'fr': 'Maison',
+    },
+  },
+  // BudgetLists
+  {
+    'a8j9blof': {
+      'en': 'Add Budget',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '16aujeyj': {
+      'en': 'Search your budgets from here...',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '1m1js3c5': {
+      'en': 'Recent Budgets',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '59u60lwd': {
+      'en': '',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'klp579l9': {
+      'en': 'Delete',
+      'ar': '',
+      'bn': 'মুছে ফেলুন',
+      'fr': '',
+    },
+    'xkfubo9a': {
+      'en': '৳5000',
+      'ar': '5000 ين ياباني',
+      'bn': '৳5000',
+      'fr': '৳5000',
+    },
+    'tik0oy4m': {
+      'en': 'Transaction Details',
+      'ar': 'تفاصيل الصفقه',
+      'bn': 'লেনদেন বিবরণী',
+      'fr': 'détails de la transaction',
+    },
+    'b7nrguf5': {
+      'en': 'Delete',
+      'ar': '',
+      'bn': 'মুছে ফেলুন',
+      'fr': '',
+    },
+    'icsnoy6n': {
+      'en': '৳1000',
+      'ar': '1000 ين',
+      'bn': '৳1000',
+      'fr': '৳1000',
+    },
+    'wsf1tkho': {
+      'en': 'Transaction Details',
+      'ar': 'تفاصيل الصفقه',
+      'bn': 'লেনদেন বিবরণী',
+      'fr': 'détails de la transaction',
+    },
+    'dawrub09': {
+      'en': 'Budget List',
+      'ar': 'إضافة فئة',
+      'bn': 'বিভাগ যোগ করুন',
+      'fr': 'ajouter une catégorie',
+    },
+    'o82l44j9': {
+      'en': 'Budget',
+      'ar': 'بيت',
+      'bn': 'বাড়ি',
+      'fr': 'Maison',
+    },
+  },
+  // BudgetDetails
+  {
+    '5xtgwb2p': {
+      'en': 'Top Spending Categories',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'xoex607t': {
+      'en': 'Delete',
+      'ar': '',
+      'bn': 'মুছে ফেলুন',
+      'fr': '',
+    },
+    '6wdcxitt': {
+      'en': 'Transaction Details',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'e49dd1rd': {
+      'en': 'Delete',
+      'ar': '',
+      'bn': 'মুছে ফেলুন',
+      'fr': '',
+    },
+    'i5s2ls0c': {
+      'en': '৳5000',
+      'ar': '5000 ين ياباني',
+      'bn': '৳5000',
+      'fr': '৳5000',
+    },
+    'ae8f5rkl': {
+      'en': 'Transaction Details',
+      'ar': 'تفاصيل الصفقه',
+      'bn': 'লেনদেন বিবরণী',
+      'fr': 'détails de la transaction',
+    },
+    '6jw6mdl7': {
+      'en': 'Delete',
+      'ar': '',
+      'bn': 'মুছে ফেলুন',
+      'fr': '',
+    },
+    'qq6v5x9r': {
+      'en': '৳1000',
+      'ar': '1000 ين',
+      'bn': '৳1000',
+      'fr': '৳1000',
+    },
+    'izgrxx7e': {
+      'en': 'Transaction Details',
+      'ar': 'تفاصيل الصفقه',
+      'bn': 'লেনদেন বিবরণী',
+      'fr': 'détails de la transaction',
+    },
+    'u5oi47jy': {
+      'en': 'Home',
+      'ar': 'بيت',
+      'bn': 'বাড়ি',
+      'fr': 'Maison',
+    },
+  },
+  // ZakatOutput
+  {
+    'g1zrna4v': {
+      'en': 'Total Zakat in ৳',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'f2bomhz3': {
+      'en':
+          '“And establish prayer and give Zakat, and whatever good you put forward for yourselves,\nyou will find it with Allah.”\n[2:110, Qur\'an]',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '8g1qmcy1': {
+      'en': 'Try to pay you Zakat as soon as possible.',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'hfkpfvt5': {
+      'en': 'Donate Zakat',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '7ba1hruh': {
+      'en': 'Zakat Output',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'mah3cpgj': {
+      'en': 'Home',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+  },
+  // Menu
+  {
+    'wypsjoxv': {
+      'en': 'Edit Profile',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'oau5sjt0': {
+      'en': 'Zakat Section',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'tao6yiof': {
+      'en': 'About Us',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'dee3ycu4': {
+      'en': 'App Settings',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'lapkunte': {
+      'en': 'Logout',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'bj75qqy3': {
+      'en': 'Build Number : 1.05.22.2023',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'apu86q6o': {
+      'en': 'Menu',
+      'ar': 'رسم بياني',
+      'bn': 'চিত্রলেখ',
+      'fr': 'Graphique',
+    },
+    '0hdjntt2': {
+      'en': 'Menu',
+      'ar': 'إحصائيات',
+      'bn': 'পরিসংখ্যান',
+      'fr': 'Statistiques',
+    },
+  },
+  // ZakatDonation
+  {
+    'zmjd3yif': {
+      'en': 'As Sunnah Foundation',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'nsd46frl': {
+      'en': 'Ahsania Mission Bangladesh',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '8w4f09ig': {
+      'en': 'UCEP, Bangladesh',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'y95skgxk': {
+      'en': 'Zakat Donation',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'semwhvn7': {
+      'en': 'Home',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+  },
+  // AppSettings
+  {
+    'zc7su4nv': {
+      'en':
+          'Choose what notifications you want to receive below and we will update the settings.',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'ar4m5768': {
+      'en': 'Push Notifications',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'khetakgt': {
+      'en':
+          'Receive Push notifications from our application on a semi regular basis.',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'ekzukcte': {
+      'en': 'Email Notifications',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'hcc7xxou': {
+      'en':
+          'Receive email notifications from our marketing team about new features.',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '7nceyf2b': {
+      'en': 'Save Changes',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'tlpt0i6k': {
+      'en': 'App Settings',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+  },
+  // Graph
+  {
+    'ao6zi6h2': {
+      'en': 'Date',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'rmaqk5wo': {
+      'en': 'Amount',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '5u51i665': {
+      'en': 'Type',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'p353c8aw': {
+      'en': 'Amount',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'ar930xzq': {
+      'en': 'Graph',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'u1ocdmch': {
+      'en': 'Graph',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+  },
+  // GraphCopy
+  {
+    'ivmzmxlr': {
+      'en': 'Date',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'jqzgyrw6': {
+      'en': 'Amount',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'j1i0xb82': {
+      'en': 'Type',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '5dtk82zm': {
+      'en': 'Amount',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    'iefhngaw': {
+      'en': 'Graph',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+    '4iqpz7zs': {
+      'en': 'Graph',
+      'ar': '',
+      'bn': '',
+      'fr': '',
+    },
+  },
+  // budgetButtonAdd
+  {
+    'a8u19wd8': {
+      'en': 'Create Budget',
       'ar': '',
       'bn': '',
       'fr': '',

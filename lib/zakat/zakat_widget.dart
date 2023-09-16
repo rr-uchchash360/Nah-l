@@ -21,7 +21,6 @@ class _ZakatWidgetState extends State<ZakatWidget> {
   late ZakatModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -33,7 +32,6 @@ class _ZakatWidgetState extends State<ZakatWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -42,7 +40,7 @@ class _ZakatWidgetState extends State<ZakatWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -79,244 +77,291 @@ class _ZakatWidgetState extends State<ZakatWidget> {
           elevation: 2.0,
         ),
         body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.pushNamed('ZakatCalculator');
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              99.0, 20.0, 99.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed('ZakatCalculator');
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'bq4yc4se' /* Calculate Zakat */,
-                            ),
-                            options: FFButtonOptions(
-                              width: 175.0,
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).success,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+          top: true,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('ZakatCalculator');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                99.0, 20.0, 99.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed('ZakatCalculator');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'bq4yc4se' /* Calculate Zakat */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              options: FFButtonOptions(
+                                width: 175.0,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).success,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.09,
-                        color: FlutterFlowTheme.of(context).success,
-                        child: ExpandableNotifier(
-                          initialExpanded: false,
-                          child: ExpandablePanel(
-                            header: Text(
-                              FFLocalizations.of(context).getText(
-                                'yekgp02m' /* What is Zakat? */,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('ZakatCalculator');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                99.0, 20.0, 99.0, 20.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed('ZakatDonation');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'z7g4l8fh' /* Donate Zakat */,
                               ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    fontSize: 18.0,
-                                  ),
-                            ),
-                            collapsed: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).lineColor,
-                              ),
-                              child: Padding(
+                              options: FFButtonOptions(
+                                width: 175.0,
+                                height: 40.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 8.0, 5.0, 0.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'enwgv9f8' /* Zakat is one of the five pilla... */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0x8904A24C),
-                                        fontSize: 12.0,
-                                      ),
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).success,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                            expanded: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      'ee8bmk8x' /* Zakat is one of the five pilla... */,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 15.0, 10.0, 0.0),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 0.09,
+                          color: FlutterFlowTheme.of(context).success,
+                          child: ExpandableNotifier(
+                            initialExpanded: false,
+                            child: ExpandablePanel(
+                              header: Text(
+                                FFLocalizations.of(context).getText(
+                                  'yekgp02m' /* What is Zakat? */,
+                                ),
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontSize: 18.0,
                                     ),
-                                    textAlign: TextAlign.center,
+                              ),
+                              collapsed: Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 8.0, 5.0, 0.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'enwgv9f8' /* Zakat is one of the five pilla... */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0x8A000000),
+                                          color: Color(0x8904A24C),
                                           fontSize: 12.0,
                                         ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            theme: ExpandableThemeData(
-                              tapHeaderToExpand: true,
-                              tapBodyToExpand: false,
-                              tapBodyToCollapse: false,
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              hasIcon: true,
-                              expandIcon: Icons.arrow_drop_down_outlined,
-                              collapseIcon: Icons.arrow_drop_up,
+                              ),
+                              expanded: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 0.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        'ee8bmk8x' /* Zakat is one of the five pilla... */,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
+                                            fontSize: 12.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              theme: ExpandableThemeData(
+                                tapHeaderToExpand: true,
+                                tapBodyToExpand: false,
+                                tapBodyToCollapse: false,
+                                headerAlignment:
+                                    ExpandablePanelHeaderAlignment.center,
+                                hasIcon: true,
+                                expandIcon: Icons.arrow_drop_down_outlined,
+                                collapseIcon: Icons.arrow_drop_up,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.09,
-                        color: FlutterFlowTheme.of(context).success,
-                        child: ExpandableNotifier(
-                          initialExpanded: false,
-                          child: ExpandablePanel(
-                            header: Text(
-                              FFLocalizations.of(context).getText(
-                                'f5jv5zzq' /* Conditions for Zakat being Far... */,
-                              ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    fontSize: 18.0,
-                                  ),
-                            ),
-                            collapsed: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).lineColor,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 8.0, 5.0, 0.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'y6afgksr' /* Zakat is obligatory on someone... */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0x8904A24C),
-                                        fontSize: 12.0,
-                                      ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 15.0, 10.0, 0.0),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 0.09,
+                          color: FlutterFlowTheme.of(context).success,
+                          child: ExpandableNotifier(
+                            initialExpanded: false,
+                            child: ExpandablePanel(
+                              header: Text(
+                                FFLocalizations.of(context).getText(
+                                  'f5jv5zzq' /* Conditions for Zakat being Far... */,
                                 ),
-                              ),
-                            ),
-                            expanded: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      '3zrvnmmc' /* Zakat is obligatory on someone... */,
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontSize: 18.0,
                                     ),
-                                    textAlign: TextAlign.start,
+                              ),
+                              collapsed: Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 8.0, 5.0, 0.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'y6afgksr' /* Zakat is obligatory on someone... */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: Color(0x8A000000),
+                                          color: Color(0x8904A24C),
                                           fontSize: 12.0,
                                         ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            theme: ExpandableThemeData(
-                              tapHeaderToExpand: true,
-                              tapBodyToExpand: false,
-                              tapBodyToCollapse: false,
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              hasIcon: true,
-                              expandIcon: Icons.arrow_drop_down_outlined,
-                              collapseIcon: Icons.arrow_drop_up,
+                              ),
+                              expanded: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 0.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        '3zrvnmmc' /* Zakat is obligatory on someone... */,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
+                                            fontSize: 12.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              theme: ExpandableThemeData(
+                                tapHeaderToExpand: true,
+                                tapBodyToExpand: false,
+                                tapBodyToCollapse: false,
+                                headerAlignment:
+                                    ExpandablePanelHeaderAlignment.center,
+                                hasIcon: true,
+                                expandIcon: Icons.arrow_drop_down_outlined,
+                                collapseIcon: Icons.arrow_drop_up,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

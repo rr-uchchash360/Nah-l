@@ -1,9 +1,13 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'about_us_model.dart';
@@ -16,11 +20,50 @@ class AboutUsWidget extends StatefulWidget {
   _AboutUsWidgetState createState() => _AboutUsWidgetState();
 }
 
-class _AboutUsWidgetState extends State<AboutUsWidget> {
+class _AboutUsWidgetState extends State<AboutUsWidget>
+    with TickerProviderStateMixin {
   late AboutUsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
+
+  final animationsMap = {
+    'rowOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 1200.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 1800.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -32,7 +75,6 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -41,7 +83,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -78,290 +120,293 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
           elevation: 2.0,
         ),
         body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
-                      child: Container(
-                        color: FlutterFlowTheme.of(context).success,
-                        child: ExpandableNotifier(
-                          initialExpanded: false,
-                          child: ExpandablePanel(
-                            header: Text(
-                              FFLocalizations.of(context).getText(
-                                'xqn24axl' /* Md. Rafiur Rahman */,
-                              ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    fontSize: 18.0,
-                                  ),
-                            ),
-                            collapsed: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).lineColor,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 8.0, 5.0, 0.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'rs5e27ed' /* Frontend Developer  */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0x8904A24C),
-                                        fontSize: 15.0,
-                                      ),
+          top: true,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 15.0, 10.0, 0.0),
+                        child: Container(
+                          color: FlutterFlowTheme.of(context).success,
+                          child: ExpandableNotifier(
+                            initialExpanded: false,
+                            child: ExpandablePanel(
+                              header: Text(
+                                FFLocalizations.of(context).getText(
+                                  'xqn24axl' /* Md. Rafiur Rahman */,
                                 ),
-                              ),
-                            ),
-                            expanded: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 5.0),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      '1dpwnlen' /* Software Engineering (SWE),
-De... */
-                                      ,
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontSize: 18.0,
                                     ),
-                                    textAlign: TextAlign.start,
+                              ),
+                              collapsed: Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 8.0, 5.0, 0.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'rs5e27ed' /* Frontend Developer  */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
+                                          color: Color(0x8904A24C),
                                           fontSize: 15.0,
                                         ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            theme: ExpandableThemeData(
-                              tapHeaderToExpand: true,
-                              tapBodyToExpand: false,
-                              tapBodyToCollapse: false,
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              hasIcon: true,
-                              expandIcon: Icons.arrow_drop_down_outlined,
-                              collapseIcon: Icons.arrow_drop_up,
-                              iconColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                              expanded: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 5.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        '1dpwnlen' /* Software Engineering (SWE),
+De... */
+                                        ,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
+                                            fontSize: 15.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              theme: ExpandableThemeData(
+                                tapHeaderToExpand: true,
+                                tapBodyToExpand: true,
+                                tapBodyToCollapse: true,
+                                headerAlignment:
+                                    ExpandablePanelHeaderAlignment.center,
+                                hasIcon: true,
+                                expandIcon: Icons.arrow_drop_down_outlined,
+                                collapseIcon: Icons.arrow_drop_up,
+                                iconColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
-                      child: Container(
-                        color: FlutterFlowTheme.of(context).success,
-                        child: ExpandableNotifier(
-                          initialExpanded: false,
-                          child: ExpandablePanel(
-                            header: Text(
-                              FFLocalizations.of(context).getText(
-                                'vlko04k4' /* Zubayer Tahmid */,
-                              ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    fontSize: 18.0,
-                                  ),
-                            ),
-                            collapsed: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).lineColor,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 8.0, 5.0, 0.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'j3rmxu3k' /* Backend Developer  */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0x8904A24C),
-                                        fontSize: 15.0,
-                                      ),
+                  ],
+                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation1']!),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 15.0, 10.0, 0.0),
+                        child: Container(
+                          color: FlutterFlowTheme.of(context).success,
+                          child: ExpandableNotifier(
+                            initialExpanded: false,
+                            child: ExpandablePanel(
+                              header: Text(
+                                FFLocalizations.of(context).getText(
+                                  'vlko04k4' /* Zubayer Tahmid */,
                                 ),
-                              ),
-                            ),
-                            expanded: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 5.0),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      'au86jlmi' /* Software Engineering (SWE),
-De... */
-                                      ,
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontSize: 18.0,
                                     ),
-                                    textAlign: TextAlign.start,
+                              ),
+                              collapsed: Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 8.0, 5.0, 0.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'j3rmxu3k' /* Backend Developer  */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
+                                          color: Color(0x8904A24C),
                                           fontSize: 15.0,
                                         ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            theme: ExpandableThemeData(
-                              tapHeaderToExpand: true,
-                              tapBodyToExpand: false,
-                              tapBodyToCollapse: false,
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              hasIcon: true,
-                              expandIcon: Icons.arrow_drop_down_outlined,
-                              collapseIcon: Icons.arrow_drop_up,
-                              iconColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                              expanded: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 5.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        'au86jlmi' /* Software Engineering (SWE),
+De... */
+                                        ,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
+                                            fontSize: 15.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              theme: ExpandableThemeData(
+                                tapHeaderToExpand: true,
+                                tapBodyToExpand: true,
+                                tapBodyToCollapse: true,
+                                headerAlignment:
+                                    ExpandablePanelHeaderAlignment.center,
+                                hasIcon: true,
+                                expandIcon: Icons.arrow_drop_down_outlined,
+                                collapseIcon: Icons.arrow_drop_up,
+                                iconColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
-                      child: Container(
-                        color: FlutterFlowTheme.of(context).success,
-                        child: ExpandableNotifier(
-                          initialExpanded: false,
-                          child: ExpandablePanel(
-                            header: Text(
-                              FFLocalizations.of(context).getText(
-                                'qr7gkcmp' /* Abrar Mahabub Nowrid */,
-                              ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBtnText,
-                                    fontSize: 18.0,
-                                  ),
-                            ),
-                            collapsed: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).lineColor,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 8.0, 5.0, 0.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'n3crawey' /* Backend Developer  */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0x8904A24C),
-                                        fontSize: 15.0,
-                                      ),
+                  ],
+                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation2']!),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 15.0, 10.0, 0.0),
+                        child: Container(
+                          color: FlutterFlowTheme.of(context).success,
+                          child: ExpandableNotifier(
+                            initialExpanded: false,
+                            child: ExpandablePanel(
+                              header: Text(
+                                FFLocalizations.of(context).getText(
+                                  'qr7gkcmp' /* Abrar Mahabub Nowrid */,
                                 ),
-                              ),
-                            ),
-                            expanded: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 5.0),
-                                  child: AutoSizeText(
-                                    FFLocalizations.of(context).getText(
-                                      'h9clkqtq' /* Software Engineering (SWE),
-De... */
-                                      ,
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontSize: 18.0,
                                     ),
-                                    textAlign: TextAlign.start,
+                              ),
+                              collapsed: Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 8.0, 5.0, 0.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'n3crawey' /* Backend Developer  */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
+                                          color: Color(0x8904A24C),
                                           fontSize: 15.0,
                                         ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            theme: ExpandableThemeData(
-                              tapHeaderToExpand: true,
-                              tapBodyToExpand: false,
-                              tapBodyToCollapse: false,
-                              headerAlignment:
-                                  ExpandablePanelHeaderAlignment.center,
-                              hasIcon: true,
-                              expandIcon: Icons.arrow_drop_down_outlined,
-                              collapseIcon: Icons.arrow_drop_up,
-                              iconColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                              expanded: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 5.0),
+                                    child: AutoSizeText(
+                                      FFLocalizations.of(context).getText(
+                                        'h9clkqtq' /* Software Engineering (SWE),
+De... */
+                                        ,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBtnText,
+                                            fontSize: 15.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              theme: ExpandableThemeData(
+                                tapHeaderToExpand: true,
+                                tapBodyToExpand: true,
+                                tapBodyToCollapse: true,
+                                headerAlignment:
+                                    ExpandablePanelHeaderAlignment.center,
+                                hasIcon: true,
+                                expandIcon: Icons.arrow_drop_down_outlined,
+                                collapseIcon: Icons.arrow_drop_up,
+                                iconColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation3']!),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,55 +1,96 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'categories_record.g.dart';
+class CategoriesRecord extends FirestoreRecord {
+  CategoriesRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class CategoriesRecord
-    implements Built<CategoriesRecord, CategoriesRecordBuilder> {
-  static Serializer<CategoriesRecord> get serializer =>
-      _$categoriesRecordSerializer;
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  bool hasName() => _name != null;
 
-  String? get name;
+  // "type" field.
+  String? _type;
+  String get type => _type ?? '';
+  bool hasType() => _type != null;
 
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(CategoriesRecordBuilder builder) =>
-      builder..name = '';
+  void _initializeFields() {
+    _name = snapshotData['name'] as String?;
+    _type = snapshotData['type'] as String?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('categories');
 
-  static Stream<CategoriesRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<CategoriesRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => CategoriesRecord.fromSnapshot(s));
 
-  static Future<CategoriesRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<CategoriesRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => CategoriesRecord.fromSnapshot(s));
 
-  CategoriesRecord._();
-  factory CategoriesRecord([void Function(CategoriesRecordBuilder) updates]) =
-      _$CategoriesRecord;
+  static CategoriesRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      CategoriesRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static CategoriesRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      CategoriesRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'CategoriesRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is CategoriesRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createCategoriesRecordData({
   String? name,
+  String? type,
 }) {
-  final firestoreData = serializers.toFirestore(
-    CategoriesRecord.serializer,
-    CategoriesRecord(
-      (c) => c..name = name,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'name': name,
+      'type': type,
+    }.withoutNulls,
   );
 
   return firestoreData;
+}
+
+class CategoriesRecordDocumentEquality implements Equality<CategoriesRecord> {
+  const CategoriesRecordDocumentEquality();
+
+  @override
+  bool equals(CategoriesRecord? e1, CategoriesRecord? e2) {
+    return e1?.name == e2?.name && e1?.type == e2?.type;
+  }
+
+  @override
+  int hash(CategoriesRecord? e) =>
+      const ListEquality().hash([e?.name, e?.type]);
+
+  @override
+  bool isValidKey(Object? o) => o is CategoriesRecord;
 }
